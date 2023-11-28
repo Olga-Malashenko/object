@@ -1,4 +1,4 @@
-import propSort from '../app';
+import sortProperty from '../app';
 
 test('Should be right order', () => {
   const obj = {
@@ -9,7 +9,7 @@ test('Should be right order', () => {
     defence: 40,
   };
   const sortOrder = ['name', 'level'];
-  const result = propSort(obj, sortOrder);
+  const result = sortProperty(obj, sortOrder);
   const expected = [
     { key: 'name', value: 'мечник' },
     { key: 'level', value: 2 },

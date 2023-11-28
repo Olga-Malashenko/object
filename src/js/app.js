@@ -1,37 +1,29 @@
-// TODO: write your code here
-/*import sum from './basic';
+export default function sortProperty(obj, order) {
+  const propSorted = [];
 
-console.log('worked');
-
-console.log(sum([1, 2])); */
-
-export default function propSort(obj, sortOrder) {
-  // some logics
-  let propSorted = [];
-  let arr = [];
-  
-  for (const property in obj) {
-    arr.push(property);
-    for (let i = 0; i < sortOrder.length; i++) {
-      if (property === sortOrder[i]) {
-        propSorted[i] = {
-          key: property,
-          value: obj[property],
-        };
-        arr.splice(arr.indexOf(property), 1);
-      }
+  for (let i = 0; i < order.length; i++) {
+    if (order[i] in obj) {
+      propSorted[i] = {
+        key: order[i],
+        value: obj[order[i]],
+      };
     }
   }
-  // сортировка подмассива методом sort
-  const newArr = arr.sort();
-  // помещение в массив, начиная с sortOrder.lenght
- 
-  for (let i = sortOrder.length; i < (sortOrder.length + newArr.length); i++) {
-    propSorted[i] = {
-      key: newArr[i - sortOrder.length],
-      value: obj[newArr[i - sortOrder.length]],
-    };
+
+  const arr = [];
+  for (const property in obj) {
+    if (!order.includes(property)) {
+      arr.push(property);
+    }
   }
+
+  const newArr = arr.sort();
+  for (const property of newArr) {
+    propSorted.push({
+      key: property,
+      value: obj[property],
+    });
+  }
+
   return propSorted;
 }
-
